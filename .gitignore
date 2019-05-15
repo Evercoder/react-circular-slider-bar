@@ -3,3 +3,8 @@
 node_modules
 
 .DS_Store
+.idea/.name
+
+*.xml
+
+.idea/react-circular-slider-bar.iml

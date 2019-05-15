@@ -90,13 +90,13 @@ class App extends Component {
   limitAngleVariation = (angle) => {
     const nextRelativeAngle = getRelativeAngle(angle, this.props.initialAngle);
     const currentRelativeAngle = getRelativeAngle(this.angle(), this.props.initialAngle);
-
-    return (
-      (nextRelativeAngle < currentRelativeAngle + this.limitAngleFactor) &&
-      (nextRelativeAngle > currentRelativeAngle - this.limitAngleFactor)
-    )
-      ? angle
-      : this.angle();
+    if (nextRelativeAngle >= currentRelativeAngle + this.limitAngleFactor) {
+      return currentRelativeAngle + this.limitAngleFactor;
+    } else if (nextRelativeAngle <= currentRelativeAngle - this.limitAngleFactor) {
+      return currentRelativeAngle - this.limitAngleFactor;
+    } else {
+      return angle;
+    }
   }
 
   calculateThumbPosition = (angle) => {
