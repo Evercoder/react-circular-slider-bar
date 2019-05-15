@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import CircularSlider from 'react-circular-slider-bar';
+import CircularSlider from '@evercoder/react-circular-slider-bar';
 
 const buttonStyle = {
   fontFamily: 'sans-serif',
