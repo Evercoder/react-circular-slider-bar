@@ -49,9 +49,7 @@ class App extends Component {
     this.offsets = this.ref.current.getBoundingClientRect()
   }
 
-  angle = () => getRelativeAngle((this.props.value / 100) * 360, this.props.initialAngle) 
-    || this.state.angle 
-    || this.props.initialAngle
+  angle = () => this.props.value !== undefined ? getRelativeAngle((this.props.value / 100) * 360, this.props.initialAngle) : this.state.angle;
 
   thumbSelect = () => {
     document.addEventListener('touchmove', this.moveThumb)
@@ -90,8 +88,8 @@ class App extends Component {
   limitAngleVariation = (angle) => {
     const nextRelativeAngle = getRelativeAngle(angle, this.props.initialAngle);
     const currentRelativeAngle = getRelativeAngle(this.angle(), this.props.initialAngle);
-    if (currentRelativeAngle < 90 && Math.abs(nextRelativeAngle - currentRelativeAngle) > 180) return this.props.initialAngle;
-    if (currentRelativeAngle > 270 && Math.abs(nextRelativeAngle - currentRelativeAngle) > 180) return (this.props.initialAngle + 361) % 360;
+    if (currentRelativeAngle < 10 && Math.abs(nextRelativeAngle - currentRelativeAngle) > 180) return this.props.initialAngle;
+    if (currentRelativeAngle > 350 && Math.abs(nextRelativeAngle - currentRelativeAngle) > 180) return (this.props.initialAngle + 361) % 360;
     return (
         (nextRelativeAngle < currentRelativeAngle + this.limitAngleFactor) &&
         (nextRelativeAngle > currentRelativeAngle - this.limitAngleFactor)
